@@ -26,4 +26,15 @@ def insert_test_doc():
     id = collection.insert_one(data).inserted_id
     print(id)
 
-insert_test_doc()
+production = client.production
+person_collection = production.person_collection
+
+def create_documents():
+    first_name = ['Tim', 'Sarah', 'Jennifer', 'Jose', 'Brad', 'Allen']
+    last_name = ['Ruscica', 'Smith', 'Bart', 'Cater', 'Pit', 'Geral']
+    age = [21, 40, 23, 19, 34, 67]
+
+    for first_name, last_name, age in zip(first_name, last_name, age):
+        doc = {'first_name': first_name, 'last_name': last_name, 'age': age}
+        person_collection.insert_one(doc)
+    
